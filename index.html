@@ -9,15 +9,14 @@
       <link rel="stylesheet" type="text/css" href="css/styles.css">
    </head>
    <body>
-      <div class="hero">
-         <div class="navbar">
+      <div id="hero" class="hero">
+         <div id="navbar-top" class="navbar">
             <img src="assets/logo.svg">
             <div class="nav-links">
                <ul>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Menu</a></li>
+                  <li><a id="menu-link" href="#">Menu</a></li>
                   <li><a href="#">About</a></li>
-                  <li><a href="#">Contact</a></li>
+                  <li><a href="#">Reservations</a></li>
                </ul>
             </div>
          </div>
@@ -34,8 +33,7 @@
          </div>
 
          <div class="hero-goto-menu">
-         	<img src="assets/menu.svg">
-         	<p><a href="#menu-section" id="menu-btn">View Menu</a></p>
+         	<a id="menu-btn" href="#menu-section"><img src="assets/menu.svg"></a>
          </div>
       </div>
 
@@ -47,7 +45,7 @@
       		</div>
       		<div class="side-navbar-links">
       			 <ul>
-                  <li><a href="#">Home</a></li>
+                  <li><a id="home-link" href="#">Home</a></li>
                   <li><a href="#">About</a></li>
                   <li><a href="#">Reservations</a></li>
                </ul>
@@ -65,6 +63,9 @@
       	<div class="menu-selection">
       		<div id="close-btn">
       			<p>&#x2715;</p>
+      		</div>
+      		<div class id="open-btn">
+      			<img src="assets/open.svg">
       		</div>
 	      	<span id="main-dishes-link" class="menu-select-links selected-link">Main Dishes</span>
 	      	<span id="seafood-link" class="menu-select-links">Seafood</span>
@@ -292,6 +293,7 @@
       			</div>
       		</div>
         </div>
+    </div>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="js/app.js"></script>
    </body>

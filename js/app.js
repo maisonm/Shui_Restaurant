@@ -1,7 +1,7 @@
 window.onload = () => {
 
 	reviewCycle(6000, review1, review2, review3);
-	scrollTopFade(navbar, 400, 10);
+	scrollTopFadeOut(navbar, 400, 10);
 
 }
 
@@ -9,9 +9,10 @@ window.onload = () => {
 const review1 = $('#hero-review-1');
 const review2 = $('#hero-review-2');
 const review3 = $('#hero-review-3');
-const navbar = $('.navbar');
+const navbar = $('#navbar-top');
 const menuOptionPanel = $('.menu-selection');
-const closeBtn = document.getElementById('close-btn');
+const closeBtn = $('#close-btn');
+const openBtn = $('#open-btn');
 const mainDishesMenuLink = $('#main-dishes-link');
 const seafoodMenuLink = $('#seafood-link');
 const appetizerMenuLink = $('#appetizers-link');
@@ -22,6 +23,11 @@ const mainDishMenuTarget = $('#main-dishes');
 const seafoodMenuTarget = $('#seafood');
 const appetizerMenuTarget = $('#appetizers');
 const sideMenuTarget = $('#sides');
+const htmlBody = $('html, body');
+const menuDisplay = $('.menu-display');
+const sideNavHomeLink = $('#home-link');
+const topNavMenuLink = $('#menu-link');
+const hero = $('#hero');
 
 
 // Hero Review FadeIn / FadeOut Cycle
@@ -47,22 +53,18 @@ function reviewCycle(delay) {
 };
 
 //Smooth Scroll to Target
-const smoothScrollToTarget = (target, transition) => {
-	$('html, body').animate({
+const smoothScrollToTarget = (target, transition, animate) => {
+	animate.animate({
 		scrollTop: target.offset().top
 	}, transition);
 }
 
-const smoothScrollToTargetTest = (target, transition) => {
-	$('.menu-display').animate({
-		scrollTop: target.offset().top
-	}, transition);
-}
+// Open Side Menu
+const openSideMenu = () => {
 
-// Hero 'Menu Link' Scroll to Menu Section
-menuBtn.click( () => {
+	openBtn.fadeOut(100);
+	smoothScrollToTarget(menuSection, 1000, htmlBody);
 
-	smoothScrollToTarget(menuSection, 1000);
 
 	setTimeout( () => {
 		menuOptionPanel.addClass('open-menu-panel');
@@ -76,33 +78,51 @@ menuBtn.click( () => {
 		sidesMenuLink.fadeIn(800);
 	}, 1500);
 
+}
+
+// Hero 'Menu Link' Scroll to Menu Section
+menuBtn.click( () => {
+
+	openSideMenu();
+
 });
 
-// Menu Option Links Scroll to Menu Heading Target
+// Menu Panel Links Scroll to Menu Heading Target
 mainDishesMenuLink.click( () => {
 
-	smoothScrollToTargetTest(mainDishMenuTarget, 800);
+	smoothScrollToTarget(mainDishMenuTarget, 800, menuDisplay);
 });
 
 seafoodMenuLink.click( () => {
 
-	smoothScrollToTargetTest(seafoodMenuLink, 800);
+	smoothScrollToTarget(seafoodMenuTarget, 800, menuDisplay);
 });
 
 appetizerMenuLink.click( () => {
 
-	smoothScrollToTargetTest(appetizerMenuTarget, 800);
+	smoothScrollToTarget(appetizerMenuTarget, 800, menuDisplay);
 });
 
 sidesMenuLink.click( () => {
 
-	smoothScrollToTarget(sideMenuTarget, 800);
-})
+	smoothScrollToTarget(sideMenuTarget, 800, menuDisplay);
+});
 
+// Side Navbar Links Scroll to Targets
+sideNavHomeLink.click(() => {
 
+	smoothScrollToTarget(hero, 800, htmlBody);
+});
+
+// Top Navbar Links Scroll to Targets
+topNavMenuLink.click(() => {
+
+	smoothScrollToTarget(menuSection, 800, htmlBody);
+	openSideMenu();
+});
 
 // FadeIn/Out Element at Scroll Position 
-const scrollTopFade = (element, speed, fromTop) => {
+const scrollTopFadeOut = (element, speed, fromTop) => {
 	$(window).on('scroll', () => {
 		let scrollTop = $(window).scrollTop();
 		if( scrollTop >= fromTop) {
@@ -113,8 +133,7 @@ const scrollTopFade = (element, speed, fromTop) => {
 	});
 }
 
-// Open and Close Menu Options Panel
-
+// Open and Close Menu Panel with 'Open and Close' buttons
 const closeMenuOptions = () => {
 
 	mainDishesMenuLink.fadeOut(500);
@@ -123,12 +142,31 @@ const closeMenuOptions = () => {
 	sidesMenuLink.fadeOut(500);
 
 	setTimeout( () => {
+		openBtn.fadeIn(800);
+	}, 1300);
+
+	setTimeout( () => {
 		menuOptionPanel.addClass('close-menu-panel');
 		menuOptionPanel.removeClass('open-menu-panel');
 	}, 800);
-	
+}
+
+const openMenuOptions = () => {
+
+		menuOptionPanel.removeClass('close-menu-panel');
+		menuOptionPanel.addClass('open-menu-panel');
+
+		openBtn.fadeOut(500);
+
+	setTimeout(() => {
+		mainDishesMenuLink.fadeIn(500);
+		seafoodMenuLink.fadeIn(500);
+		appetizerMenuLink.fadeIn(500);
+		sidesMenuLink.fadeIn(500);
+	}, 800);
 
 }
 
-closeBtn.addEventListener('click', closeMenuOptions);
+closeBtn.click(closeMenuOptions);
+openBtn.click(openMenuOptions);
 
