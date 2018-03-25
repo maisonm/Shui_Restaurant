@@ -1,0 +1,90 @@
+@import "variables.scss";
+
+.reservations-page-container {
+
+	height: 100vh;
+	width: 100%;
+	color: #fff;
+	background-image: url("../assets/reservations-bg-img.png");
+	background-size: cover;
+	overflow: hidden;
+
+
+}
+.reservations-form-container {
+	
+
+	height: 100%;
+	width: 99.7%;
+	position: absolute;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.reservation-form {
+
+	height: 50%;
+	width: 70%;
+	background: $review-card-bg-color;
+	margin-top: 100px;
+	margin-bottom: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	position: relative;
+	z-index: 99;
+
+	.reservation-head {
+	
+		display: flex;
+		flex-direction: column;
+		width: 40%;
+		text-align: center;
+		font-size: .85em;
+		position: absolute; 
+		top: 40px;
+
+			img {
+
+				margin-bottom: 40px;
+			}
+	}
+
+	.input-fields {
+
+		text-align: left;
+		display: flex;
+		align-items: center;
+		margin-top: 100px;
+
+		input {
+
+			height: 30px;
+			width: 200px;
+			border-radius: 2px;
+			border: none;
+			box-shadow: 1px 1px 4px #797979;
+			padding-left: 10px;
+			margin-bottom: 8px;
+		}
+
+		span {
+
+			margin-right: 30px;
+
+			p {
+
+				margin-bottom: 4px;
+				font-size: .9em;
+				font-weight: 500;
+			}
+		}
+
+}
+
+
+}

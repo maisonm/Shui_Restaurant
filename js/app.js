@@ -28,6 +28,7 @@ const menuDisplay = $('.menu-display');
 const sideNavHomeLink = $('#home-link');
 const topNavMenuLink = $('#menu-link');
 const hero = $('#hero');
+const reservationDate = $('#reservation-input-date');
 
 
 // Hero Review FadeIn / FadeOut Cycle
@@ -166,6 +167,13 @@ const openMenuOptions = () => {
 	}, 800);
 
 }
+
+// Reservation Page Datepicker
+$(document).ready(function() {
+    $('#reservation-input-date').datepicker();
+    $('#reservation-input-time').timepicker();
+});
+
 
 closeBtn.click(closeMenuOptions);
 openBtn.click(openMenuOptions);
